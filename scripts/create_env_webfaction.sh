@@ -1,0 +1,1 @@
+PYTHONPATH=$HOME/webapps/hebikwindmee/lib/python3.4 easy_install-3.4 --install-dir=$HOME/webapps/hebikwindmee/lib/python3.4 --script-dir=$HOME/webapps/hebikwindmee/bin `cat requirements.txt`
