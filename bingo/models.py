@@ -43,13 +43,13 @@ def create_card(game, user):
     card = Card()
     card.game = game
     card.user = user
+    card.save()
     for i in range(1, 25):
         field = Field()
         field.card = card
         field.position = i
         field.field_value = get_random_field_value()
         field.save()
-    card.save()
 
 
 def add_info_to_card(card):
