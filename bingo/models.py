@@ -29,6 +29,9 @@ class FieldValue(models.Model):
     description = models.CharField(max_length=1000, blank=True)
     image = models.ImageField(blank=True)
 
+    def __str__(self):
+        return self.name
+
 
 def get_random_field_value():
     value_random = FieldValue.objects.order_by('?').first()
