@@ -6,16 +6,23 @@
 {% block content %}
 
 {% for card in cards %}
-Card for game "{{ card.game.name }}" with id {{ card.id }}.
-<div class="row" align="center">
-    {% for field in card.fields %}
-        {{ field.position }} <br/>
-        {{ field.field_value.name }} <br/>
-        {{ field.field_value.description }} <br/>
-        {{ field.is_checked }} <br/>
-        <a href="/field/check?id={{ field.id }}">Check</a>
-    {% endfor %}
-</div>
+    <div class="row" align="center">
+
+        Card for game "{{ card.game.name }}" with id {{ card.id }}.
+
+        {% for field in card.fields %}
+            <div class="row" align="center">
+
+                {{ field.position }} <br/>
+                {{ field.field_value.name }} <br/>
+                {{ field.field_value.description }} <br/>
+                {{ field.is_checked }} <br/>
+                <a href="/field/check?id={{ field.id }}">Check</a>
+
+            </div>
+        {% endfor %}
+
+    </div>
 {% endfor %}
 
 {% endblock %}
