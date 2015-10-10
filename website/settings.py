@@ -53,6 +53,22 @@ ROOT_URLCONF = 'website.urls'
 
 WSGI_APPLICATION = 'website.wsgi.application'
 
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'django-dual-authentication.backends.DualAuthentication',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.template.context_processors.debug",
+    "django.template.context_processors.i18n",
+    "django.template.context_processors.media",
+    "django.template.context_processors.static",
+    "django.template.context_processors.tz",
+    "django.contrib.messages.context_processors.messages"
+)
+
 # Internationalization
 
 LANGUAGE_CODE = 'en-us'
@@ -73,3 +89,9 @@ BOOTSTRAP3 = {
     'horizontal_label_class': 'col-md-2',
     'horizontal_field_class': 'col-md-4',
 }
+
+##############################
+# django-dual-authentication #
+##############################
+
+AUTHENTICATION_METHOD = 'both'
