@@ -4,9 +4,11 @@ logger = logging.getLogger(__name__)
 from django.views.generic import TemplateView
 
 from bingo.models import add_info_to_card
+from bingo.models import create_card
 from bingo.models import Card
 from bingo.models import Field
 from bingo.models import FieldValue
+from bingo.models import Game
 
 
 class HomeView(TemplateView):
@@ -38,4 +40,19 @@ class CheckFieldView(CardsView):
         field.is_checked = not field.is_checked
         field.save()
         context = super(CheckFieldView, self).get_context_data(**kwargs)
+        return context
+
+
+class JoinGameView(TemplateView):
+    template_name = "website/joingame.html"
+    context_object_name = "join_game"
+
+    def get_context_data(self, game_id, **kwargs):
+        context = super(JoinGameView, self).get_context_data(**kwargs)
+        game = Game.objects.get(id=game_id)
+        if not Card.objects.filter(user=self.request.user, game=game):
+            create_card(game, self.request.user)
+            context['message'] = "A new bingo card for this game is created for you!"
+        else:
+            context['message'] = "You are already participating in this game!"
         return context
