@@ -47,3 +47,9 @@ def create_card(game, user):
         field.field_value = get_random_field_value()
         field.save()
     card.save()
+
+
+def add_info_to_card(card):
+    fields = Field.objects.filter(card=card)
+    card.fields = fields
+

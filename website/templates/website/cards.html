@@ -1,0 +1,21 @@
+{% extends "website/base.html" %}
+
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+{% block content %}
+
+{% for card in cards %}
+Card for game "{{ card.game.name }}" with id {{ card.id }}.
+<div class="row" align="center">
+    {% for field in card.fields %}
+        {{ field.position }} <br/>
+        {{ field.field_value.name }} <br/>
+        {{ field.field_value.description }} <br/>
+        {{ field.is_checked }} <br/>
+        <a href="/field/check?id={{ field.id }}">Check</a>
+    {% endfor %}
+</div>
+{% endfor %}
+
+{% endblock %}
