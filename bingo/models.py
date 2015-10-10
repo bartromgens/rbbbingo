@@ -55,3 +55,12 @@ def create_card(game, user):
 def add_info_to_card(card):
     fields = Field.objects.filter(card=card)
     card.fields = fields
+
+
+def add_info_to_game(game):
+    cards = Card.objects.filter(game=game)
+    players = []
+    for card in cards:
+        players.append(card.user)
+    game.players = players
+    game.n_players = len(players)

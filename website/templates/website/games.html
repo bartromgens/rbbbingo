@@ -1,0 +1,21 @@
+{% extends "website/base.html" %}
+
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+{% block content %}
+
+{% for game in games %}
+    <div class="row" align="center">
+        {{ game.name }} <br/>
+        players ({{ game.n_players }}):
+        {% for player in game.players %}
+            {{ player }}
+        {% endfor %}
+        <br/>
+        <a href="/game/join/{{ game.id }}">join</a>
+    </div>
+    <hr/>
+{% endfor %}
+
+{% endblock %}

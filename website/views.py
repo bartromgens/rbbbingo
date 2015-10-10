@@ -4,6 +4,7 @@ logger = logging.getLogger(__name__)
 from django.views.generic import TemplateView
 
 from bingo.models import add_info_to_card
+from bingo.models import add_info_to_game
 from bingo.models import create_card
 from bingo.models import Card
 from bingo.models import Field
@@ -30,6 +31,22 @@ class CardsView(TemplateView):
         for card in cards:
             add_info_to_card(card)
         context['cards'] = cards
+        return context
+
+
+class GamesView(TemplateView):
+    template_name = "website/games.html"
+    context_object_name = "games"
+
+    def get_context_data(self, **kwargs):
+        context = super(GamesView, self).get_context_data(**kwargs)
+        cards = Card.objects.filter(user=self.request.user)
+        games = []
+        for card in cards:
+            game = card.game
+            add_info_to_game(game)
+            games.append(game)
+        context['games'] = games
         return context
 
 
