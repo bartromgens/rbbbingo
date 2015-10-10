@@ -50,6 +50,17 @@ class GamesView(TemplateView):
         return context
 
 
+class EventsView(TemplateView):
+    template_name = "website/events.html"
+    context_object_name = "events"
+
+    def get_context_data(self, **kwargs):
+        context = super(EventsView, self).get_context_data(**kwargs)
+        events = FieldValue.objects.all()
+        context['events'] = events
+        return context
+
+
 class CheckFieldView(CardsView):
 
     def get_context_data(self, field_id, **kwargs):

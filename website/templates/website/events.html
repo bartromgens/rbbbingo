@@ -1,0 +1,16 @@
+{% extends "website/base.html" %}
+
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+{% block content %}
+
+{% for event in events %}
+    <div class="row" align="center">
+        {{ event.name }} <br/>
+        {{ event.description }}
+    </div>
+    <hr/>
+{% endfor %}
+
+{% endblock %}
