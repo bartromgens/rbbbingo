@@ -55,4 +55,3 @@ def create_card(game, user):
 def add_info_to_card(card):
     fields = Field.objects.filter(card=card)
     card.fields = fields
-
