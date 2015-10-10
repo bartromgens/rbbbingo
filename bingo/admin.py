@@ -25,9 +25,10 @@ class FieldAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['card']}),
         (None, {'fields': ['field_value']}),
+        (None, {'fields': ['position']}),
         (None, {'fields': ['is_checked']}),
     ]
-    list_display = ('card', 'field_value', 'is_checked')
+    list_display = ('card', 'field_value', 'position', 'is_checked')
 
 
 class FieldValueAdmin(admin.ModelAdmin):
