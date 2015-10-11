@@ -6,27 +6,40 @@
 {% block content %}
 
 {% for card in cards %}
-    <div class="row" align="center">
+  <div class="row" align="center">
+    <h3>Card for game "{{ card.game.name }}"</h3>
 
-        <h3>Card for game "{{ card.game.name }}"</h3>
-
-        {% for field in card.fields %}
-            {% if field.position|divisibleby:5 or forloop.counter0 = 0%}
-            <div class="row" align="center">
-            {% endif %}
-                <div class="col-xs-2">
-                {{ field.position }} <br/>
-                {{ field.field_value.name }} <br/>
-                {{ field.field_value.description }} <br/>
-                {{ field.is_checked }} <br/>
-                <a href="/field/toggle/{{ field.id }}">Toggle</a>
-                </div>
-            {% if field.position|divisibleby:5 %}
+    {% for field in card.fields %}
+      <div class="col-xs-15" data-toggle="modal" data-target="#myModal">
+        <div class="bingo-field" style="background-image:{{event.image.url}}">
+          <div class="bingo-field-bg"></div>
+          <div class="bingo-field-inner">
+            {{ field.field_value.name }}
+          </div>
+          <div class="glyphicon glyphicon-remove done-cross"></div>
+        </div>
+      </div>
+    
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">{{ field.field_value.name }}</h4>
             </div>
-            {% endif %}
-        {% endfor %}
-
-    </div>
+            <div class="modal-body">
+              <p>{{ field.field_value.description }} </p>
+              <p>{{ field.is_checked }}</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <a href="/field/toggle/{{ field.id }}"> <button type="button" class="btn btn-primary">check!</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
 {% endfor %}
 
 {% endblock %}
