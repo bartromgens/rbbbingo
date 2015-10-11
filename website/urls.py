@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from django.contrib.auth.decorators import login_required
 
 from website.views import CardsView
 from website.views import CheckFieldView
@@ -14,9 +15,9 @@ urlpatterns = patterns(
     url(r'^$', HomeView.as_view()),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('registration.backends.simple.urls')), # the django-registration module
-    url(r'^cards/', CardsView.as_view()),
-    url(r'^games/', GamesView.as_view()),
-    url(r'^events/', EventsView.as_view()),
-    url(r'^field/toggle/(?P<field_id>[0-9]+)/$', CheckFieldView.as_view()),
-    url(r'^game/join/(?P<game_id>[0-9]+)/$', JoinGameView.as_view()),
+    url(r'^cards/', login_required(CardsView.as_view())),
+    url(r'^games/', login_required(GamesView.as_view())),
+    url(r'^events/', login_required(EventsView.as_view())),
+    url(r'^field/toggle/(?P<field_id>[0-9]+)/$', login_required(CheckFieldView.as_view())),
+    url(r'^game/join/(?P<game_id>[0-9]+)/$', login_required(JoinGameView.as_view())),
 )
