@@ -77,9 +77,12 @@ class JoinGameView(TemplateView):
     def get_context_data(self, game_id, **kwargs):
         context = super(JoinGameView, self).get_context_data(**kwargs)
         game = Game.objects.get(id=game_id)
-        if not Card.objects.filter(user=self.request.user, game=game):
-            create_card(game, self.request.user)
-            context['message'] = "A new bingo card for this game is created for you!"
-        else:
+        has_events = FieldValue.objects.count()
+        if not has_events:
+            context['message'] = "There are no events to use in a new game card. Please create some events first."
+        elif Card.objects.filter(user=self.request.user, game=game):
             context['message'] = "You are already participating in this game!"
+        else:
+            create_card(game, self.request.user)
+            context['message'] = "New bingo card created for you!"
         return context
