@@ -40,12 +40,9 @@ class GamesView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(GamesView, self).get_context_data(**kwargs)
-        cards = Card.objects.filter(user=self.request.user)
-        games = []
-        for card in cards:
-            game = card.game
+        games = Game.objects.all()
+        for game in games:
             add_info_to_game(game)
-            games.append(game)
         context['games'] = games
         return context
 
