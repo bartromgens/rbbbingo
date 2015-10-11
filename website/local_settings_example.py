@@ -30,8 +30,8 @@ DATABASES = {
 
 # Static files (CSS, JavaScript, Images)
 
-#STATIC_ROOT = '/home/username/webapps/hebikwindmee/'
+#STATIC_ROOT = '/home/username/webapps/rbbingo_static/'
 STATIC_ROOT = ''
 
-#STATIC_URL = 'http://www.malttracker.com/hebikwindmeestatic/'
+#STATIC_URL = 'http://www.domain.com/static/'
 STATIC_URL = "/static/"
