@@ -17,13 +17,16 @@
 
 {% for game in games %}
     <div class="row" align="center">
-        {{ game.name }} <br/>
-        players ({{ game.n_players }}):
+        <h3>{{ game.name }}</h3>
+        <h4>
+            {{ game.n_players }} players
+        </h4>
+        <h4>
         {% for player in game.players %}
             {{ player }}
         {% endfor %}
-        <br/>
-        <a href="/game/join/{{ game.id }}">join</a>
+        </h4>
+        <a href="/game/join/{{ game.id }}" class="btn btn-info" role="button">Join</a>
     </div>
     <hr/>
 {% endfor %}
