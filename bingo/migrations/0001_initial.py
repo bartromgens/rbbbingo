@@ -15,13 +15,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Card',
             fields=[
-                ('id', models.AutoField(auto_created=True, verbose_name='ID', serialize=False, primary_key=True)),
+                ('id', models.AutoField(auto_created=True, serialize=False, verbose_name='ID', primary_key=True)),
             ],
         ),
         migrations.CreateModel(
             name='Field',
             fields=[
-                ('id', models.AutoField(auto_created=True, verbose_name='ID', serialize=False, primary_key=True)),
+                ('id', models.AutoField(auto_created=True, serialize=False, verbose_name='ID', primary_key=True)),
                 ('position', models.IntegerField()),
                 ('is_checked', models.BooleanField(default=False)),
                 ('card', models.ForeignKey(to='bingo.Card')),
@@ -30,23 +30,23 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='FieldValue',
             fields=[
-                ('id', models.AutoField(auto_created=True, verbose_name='ID', serialize=False, primary_key=True)),
+                ('id', models.AutoField(auto_created=True, serialize=False, verbose_name='ID', primary_key=True)),
                 ('name', models.CharField(max_length=200)),
-                ('description', models.CharField(max_length=1000)),
-                ('image', models.ImageField(upload_to='')),
+                ('description', models.CharField(max_length=1000, blank=True)),
+                ('image', models.ImageField(upload_to='', blank=True)),
             ],
         ),
         migrations.CreateModel(
             name='Game',
             fields=[
-                ('id', models.AutoField(auto_created=True, verbose_name='ID', serialize=False, primary_key=True)),
+                ('id', models.AutoField(auto_created=True, serialize=False, verbose_name='ID', primary_key=True)),
                 ('name', models.CharField(max_length=300)),
             ],
         ),
         migrations.AddField(
             model_name='field',
             name='field_value',
-            field=models.ForeignKey(related_name='field_value', to='bingo.FieldValue'),
+            field=models.ForeignKey(to='bingo.FieldValue', related_name='field_value'),
         ),
         migrations.AddField(
             model_name='card',
