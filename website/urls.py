@@ -12,6 +12,7 @@ from website.views import GamesView
 from website.views import HomeView
 from website.views import JoinGameView
 from website.views import NewEventView
+from website.views import NewGameView
 
 
 urlpatterns = patterns(
@@ -22,6 +23,7 @@ urlpatterns = patterns(
     url(r'^accounts/', include('registration.backends.simple.urls')), # the django-registration module
     url(r'^cards/', login_required(CardsView.as_view())),
     url(r'^games/', login_required(GamesView.as_view())),
+    url(r'^game/new', login_required(NewGameView.as_view())),
     url(r'^events/', login_required(EventsView.as_view())),
     url(r'^event/new', login_required(NewEventView.as_view())),
     url(r'^field/toggle/(?P<field_id>[0-9]+)/$', login_required(CheckFieldView.as_view())),

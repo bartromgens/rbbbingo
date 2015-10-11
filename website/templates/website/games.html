@@ -5,6 +5,16 @@
 
 {% block content %}
 
+<div class="subnav subnav subnav-fixed-top">
+    <div class="container">
+        <div class="subnav">
+            <ul class="nav navbar-nav">
+                <li><a href="/game/new"><b class="text-info">{% bootstrap_icon "plus" %} New game </b></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 {% for game in games %}
     <div class="row" align="center">
         {{ game.name }} <br/>

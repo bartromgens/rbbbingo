@@ -1,6 +1,18 @@
 from django import forms
 
 from bingo.models import FieldValue
+from bingo.models import Game
+
+
+class NewGameForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(NewGameForm, self).__init__(*args, **kwargs)
+
+        self.fields['name'] = forms.CharField(required=True)
+
+    class Meta:
+        model = Game
+        fields = '__all__'
 
 
 class NewFieldValuedForm(forms.ModelForm):

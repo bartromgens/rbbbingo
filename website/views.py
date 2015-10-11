@@ -15,6 +15,7 @@ from bingo.models import FieldValue
 from bingo.models import Game
 
 from bingo.forms import NewFieldValuedForm
+from bingo.forms import NewGameForm
 
 
 class HomeView(TemplateView):
@@ -105,4 +106,19 @@ class NewEventView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super(NewEventView, self).get_context_data(**kwargs)
+        return context
+
+
+class NewGameView(FormView):
+    template_name = 'website/game_new.html'
+    form_class = NewGameForm
+    success_url = '/games/'
+
+    def form_valid(self, form):
+        super(NewGameView, self).form_valid(form)
+        form.save()
+        return HttpResponseRedirect('/games/')
+
+    def get_context_data(self, **kwargs):
+        context = super(NewGameView, self).get_context_data(**kwargs)
         return context
