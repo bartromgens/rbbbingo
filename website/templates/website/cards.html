@@ -11,7 +11,11 @@
 
     {% for field in card.fields %}
       <div class="col-xs-15" data-toggle="modal" data-target="#myModal">
-        <div class="bingo-field" style="background-image:{{event.image.url}}">
+        {% if field.field_value.image %}
+        <div class="bingo-field" style="background-image:url({% static field.field_value.image.url %})">
+        {% else %}
+        <div class="bingo-field">
+        {% endif %}
           <div class="bingo-field-bg"></div>
           <div class="bingo-field-inner">
             {{ field.field_value.name }}
