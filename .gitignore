@@ -1,10 +1,11 @@
 /env/*
+/.idea/*
+/website/static/website/media/*
 
 *.pyc
-
-/.idea/*
-
-local_settings.py
 *.sqlite
 *.log
 *.db
+
+local_settings.py
+.directory
