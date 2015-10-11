@@ -7,7 +7,7 @@
 
 {% for card in cards %}
   <div class="row" align="center">
-    <h3>Card for game "{{ card.game.name }}"</h3>
+    <h3>"{{ card.game.name }}" card</h3>
 
     {% for field in card.fields %}
       <div class="col-xs-15" data-toggle="modal" data-target="#myModal">
