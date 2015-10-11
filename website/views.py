@@ -1,7 +1,10 @@
 import logging
 logger = logging.getLogger(__name__)
 
+
+from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView
+from django.views.generic import FormView
 
 from bingo.models import add_info_to_card
 from bingo.models import add_info_to_game
@@ -10,6 +13,8 @@ from bingo.models import Card
 from bingo.models import Field
 from bingo.models import FieldValue
 from bingo.models import Game
+
+from bingo.forms import NewFieldValuedForm
 
 
 class HomeView(TemplateView):
@@ -85,4 +90,19 @@ class JoinGameView(TemplateView):
         else:
             create_card(game, self.request.user)
             context['message'] = "New bingo card created for you!"
+        return context
+
+
+class NewEventView(FormView):
+    template_name = 'website/event_new.html'
+    form_class = NewFieldValuedForm
+    success_url = '/events/'
+
+    def form_valid(self, form):
+        super(NewEventView, self).form_valid(form)
+        form.save()
+        return HttpResponseRedirect('/events/')
+
+    def get_context_data(self, **kwargs):
+        context = super(NewEventView, self).get_context_data(**kwargs)
         return context

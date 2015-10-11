@@ -5,6 +5,16 @@
 
 {% block content %}
 
+<div class="subnav subnav subnav-fixed-top">
+    <div class="container">
+        <div class="subnav">
+            <ul class="nav navbar-nav">
+                <li><a href="/event/new"><b class="text-info">{% bootstrap_icon "plus" %} New event </b></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 {% for event in events %}
     <div class="row" align="center">
         {{ event.name }} <br/>

@@ -36,7 +36,6 @@ class FieldValue(models.Model):
         verbose_name = "Event"
 
 
-
 def get_random_field_value():
     value_random = FieldValue.objects.order_by('?').first()
     assert value_random
