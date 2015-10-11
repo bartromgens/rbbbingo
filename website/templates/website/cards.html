@@ -8,18 +8,22 @@
 {% for card in cards %}
     <div class="row" align="center">
 
-        Card for game "{{ card.game.name }}" with id {{ card.id }}.
+        <h3>Card for game "{{ card.game.name }}"</h3>
 
         {% for field in card.fields %}
+            {% if field.position|divisibleby:5 or forloop.counter0 = 0%}
             <div class="row" align="center">
-
+            {% endif %}
+                <div class="col-xs-2">
                 {{ field.position }} <br/>
                 {{ field.field_value.name }} <br/>
                 {{ field.field_value.description }} <br/>
                 {{ field.is_checked }} <br/>
                 <a href="/field/toggle/{{ field.id }}">Toggle</a>
-
+                </div>
+            {% if field.position|divisibleby:5 %}
             </div>
+            {% endif %}
         {% endfor %}
 
     </div>
