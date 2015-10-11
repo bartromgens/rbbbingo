@@ -34,4 +34,4 @@ DATABASES = {
 STATIC_ROOT = ''
 
 #STATIC_URL = 'http://www.malttracker.com/hebikwindmeestatic/'
-STATIC_URL = APP_DIR + 'static/'
+STATIC_URL = os.path.join(APP_DIR, "static/")

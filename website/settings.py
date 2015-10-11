@@ -96,10 +96,10 @@ LOGIN_REDIRECT_URL = '/'
 
 BOOTSTRAP3 = {
     'jquery_url': 'http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js', #'//code.jquery.com/jquery.min.js',
-    'base_url': STATIC_URL + 'website/bootstrap/', #'//netdna.bootstrapcdn.com/bootstrap/3.0.3/'
-    'css_url': STATIC_URL + 'website/bootstrap/css/bootstrap_flatly.min.css',
+    'base_url': os.path.join(STATIC_URL, 'website/bootstrap/'), #'//netdna.bootstrapcdn.com/bootstrap/3.0.3/'
+    'css_url': os.path.join(STATIC_URL, 'website/bootstrap/css/bootstrap_flatly.min.css'),
     'theme_url': None,
-    'javascript_url': STATIC_URL + 'website/bootstrap/js/bootstrap.min.js',
+    'javascript_url': os.path.join(STATIC_URL, 'website/bootstrap/js/bootstrap.min.js'),
     'horizontal_label_class': 'col-md-2',
     'horizontal_field_class': 'col-md-4',
 }
