@@ -32,6 +32,10 @@ class FieldValue(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "Event"
+
+
 
 def get_random_field_value():
     value_random = FieldValue.objects.order_by('?').first()
@@ -44,7 +48,7 @@ def create_card(game, user):
     card.game = game
     card.user = user
     card.save()
-    for i in range(1, 25):
+    for i in range(1, 26):  # 5x5 field
         field = Field()
         field.card = card
         field.position = i
