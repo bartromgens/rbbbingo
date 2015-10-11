@@ -37,3 +37,9 @@ STATIC_ROOT = ''
 STATIC_URL = "/static/"
 
 REGISTRATION_OPEN = True
+
+#MEDIA_ROOT = '/home/username/webapps/rbbingo_static/media/'
+MEDIA_ROOT = os.path.join(APP_DIR, 'website/static/website/media/')
+
+#MEDIA_URL = 'http://www.domain.com/static/media/'
+MEDIA_URL = '/static/website/media/'
