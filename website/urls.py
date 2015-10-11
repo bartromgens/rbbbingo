@@ -18,7 +18,7 @@ from website.views import RBBingoNewRegistrationView
 
 urlpatterns = patterns(
     '',
-    url(r'^$', HomeView.as_view()),
+    url(r'^$', login_required(HomeView.as_view())),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/register/', RBBingoNewRegistrationView.as_view(form_class=RegistrationFormUniqueEmail), name='registration_register'), # include before the simple.urls to override register url
     url(r'^accounts/', include('registration.backends.simple.urls')), # the django-registration module
