@@ -35,3 +35,5 @@ STATIC_ROOT = ''
 
 #STATIC_URL = 'http://www.domain.com/static/'
 STATIC_URL = "/static/"
+
+REGISTRATION_OPEN = True
