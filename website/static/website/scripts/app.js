@@ -4,7 +4,7 @@ $(document).ready(function () {
     var height = $('.bingo-field').width();
     $('.bingo-field').height(height);
   };    
-  
+    
   $(window).resize(function () {
     setFieldHeight();
   });
