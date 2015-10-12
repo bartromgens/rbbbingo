@@ -6,44 +6,7 @@
 {% block content %}
 
 {% for card in cards %}
-  <div class="row" align="center">
-    <h3>"{{ card.game.name }}" card</h3>
-
-    {% for field in card.fields %}
-      <div class="col-xs-15" data-toggle="modal" data-target="#myModal">
-        {% if field.field_value.image %}
-        <div class="bingo-field" style="background-image:url({{ field.field_value.image.url }}); background-size:cover;">
-        {% else %}
-        <div class="bingo-field">
-        {% endif %}
-          <div class="bingo-field-bg"></div>
-          <div class="bingo-field-inner">
-            {{ field.field_value.name }}
-          </div>
-          <div class="glyphicon glyphicon-remove done-cross"></div>
-        </div>
-      </div>
-    
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">{{ field.field_value.name }}</h4>
-            </div>
-            <div class="modal-body">
-              <p>{{ field.field_value.description }} </p>
-              <p>{{ field.is_checked }}</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <a href="/field/toggle/{{ field.id }}"> <button type="button" class="btn btn-primary">check!</button></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    {% endfor %}
-  </div>
+  {% include "website/card.html" %}
 {% endfor %}
 
 {% endblock %}
