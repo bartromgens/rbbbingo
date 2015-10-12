@@ -23,15 +23,6 @@ from bingo.forms import NewFieldValuedForm
 from bingo.forms import NewGameForm
 
 
-class HomeView(TemplateView):
-    template_name = "website/index.html"
-    context_object_name = "homepage"
-
-    def get_context_data(self, **kwargs):
-        context = super(HomeView, self).get_context_data(**kwargs)
-        return context
-
-
 class CardView(TemplateView):
     template_name = "website/card.html"
     context_object_name = "cards"
@@ -61,6 +52,15 @@ class GamesView(TemplateView):
             else:
                 game.is_joined = False
         context['games'] = games
+        return context
+
+
+class HomeView(GamesView):
+    template_name = "website/games.html"
+    context_object_name = "homepage"
+
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
         return context
 
 
