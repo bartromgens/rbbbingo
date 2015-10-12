@@ -97,13 +97,12 @@ class JoinGameView(TemplateView):
         has_events = FieldValue.objects.count()
         if not has_events:
             context['message'] = "There are no events to use in a new game card. Please create some events first."
-            return context
         elif Card.objects.filter(user=self.request.user, game=game):
             context['message'] = "You are already participating in this game!"
-            return context
         else:
             create_card(game, self.request.user)
-            return HttpResponseRedirect('/games/')
+            context['message'] = "A card is created for you!"
+        return context
 
 
 class NewEventView(FormView):
