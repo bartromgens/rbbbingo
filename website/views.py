@@ -30,6 +30,8 @@ class CardView(TemplateView):
     def get_context_data(self, card_id, **kwargs):
         context = super(CardView, self).get_context_data(**kwargs)
         card = Card.objects.get(id=card_id)
+        if card.user != self.request.user:
+            return context
         add_info_to_card(card)
         context['card'] = card
         return context
