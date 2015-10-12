@@ -26,7 +26,11 @@
             {{ player }}
         {% endfor %}
         </h4>
-        <a href="/game/join/{{ game.id }}" class="btn btn-info" role="button">Join</a>
+        {% if game.is_joined %}
+            <a href="/card/{{ game.card_id }}" class="btn btn-success" role="button">My Card</a>
+        {% else %}
+            <a href="/game/join/{{ game.id }}" class="btn btn-primary" role="button">Join</a>
+        {% endif %}
     </div>
     <hr/>
 {% endfor %}

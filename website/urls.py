@@ -5,7 +5,7 @@ from django.views.generic import TemplateView
 
 from registration.forms import RegistrationFormUniqueEmail
 
-from website.views import CardsView
+from website.views import CardView
 from website.views import CheckFieldView
 from website.views import EventsView
 from website.views import GamesView
@@ -22,7 +22,7 @@ urlpatterns = patterns(
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/register/', RBBingoNewRegistrationView.as_view(form_class=RegistrationFormUniqueEmail), name='registration_register'), # include before the simple.urls to override register url
     url(r'^accounts/', include('registration.backends.simple.urls')), # the django-registration module
-    url(r'^cards/', login_required(CardsView.as_view())),
+    url(r'^card/(?P<card_id>[0-9]+)/$', login_required(CardView.as_view())),
     url(r'^games/', login_required(GamesView.as_view())),
     url(r'^game/new', login_required(NewGameView.as_view())),
     url(r'^events/', login_required(EventsView.as_view())),

@@ -32,16 +32,15 @@ class HomeView(TemplateView):
         return context
 
 
-class CardsView(TemplateView):
-    template_name = "website/cards.html"
+class CardView(TemplateView):
+    template_name = "website/card.html"
     context_object_name = "cards"
 
-    def get_context_data(self, **kwargs):
-        context = super(CardsView, self).get_context_data(**kwargs)
-        cards = Card.objects.filter(user=self.request.user)
-        for card in cards:
-            add_info_to_card(card)
-        context['cards'] = cards
+    def get_context_data(self, card_id, **kwargs):
+        context = super(CardView, self).get_context_data(**kwargs)
+        card = Card.objects.get(id=card_id)
+        add_info_to_card(card)
+        context['card'] = card
         return context
 
 
@@ -54,6 +53,13 @@ class GamesView(TemplateView):
         games = Game.objects.all()
         for game in games:
             add_info_to_game(game)
+            card = Card.objects.filter(user=self.request.user, game=game)
+            if card:
+                assert card.count() == 1
+                game.is_joined = True
+                game.card_id = card[0].id
+            else:
+                game.is_joined = False
         context['games'] = games
         return context
 
@@ -69,7 +75,7 @@ class EventsView(TemplateView):
         return context
 
 
-class CheckFieldView(CardsView):
+class CheckFieldView(CardView):
 
     def get_context_data(self, field_id, **kwargs):
         context = super(CheckFieldView, self).get_context_data(**kwargs)
@@ -91,12 +97,13 @@ class JoinGameView(TemplateView):
         has_events = FieldValue.objects.count()
         if not has_events:
             context['message'] = "There are no events to use in a new game card. Please create some events first."
+            return context
         elif Card.objects.filter(user=self.request.user, game=game):
             context['message'] = "You are already participating in this game!"
+            return context
         else:
             create_card(game, self.request.user)
-            context['message'] = "New bingo card created for you!"
-        return context
+            return HttpResponseRedirect('/games/')
 
 
 class NewEventView(FormView):
