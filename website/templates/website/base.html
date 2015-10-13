@@ -57,7 +57,9 @@
           <li><a href="/accounts/login"><b>Sign in</b></a></li>
           <li><a href="/accounts/register"><b>Register</b></a></li>
         {% else %}
+          {% if user.is_staff %}
           <li><a href="/admin"><b>Admin</b></a></li>
+          {% endif %}
           <li><a href="/accounts/logout"><b>Log out [{{ user.username }}]</b></a></li>
         {% endif %}
         </ul>
