@@ -36,9 +36,11 @@ class FieldValue(models.Model):
         verbose_name = "Event"
 
 
-def get_random_field_value():
-    value_random = FieldValue.objects.order_by('?').first()
-    assert value_random
+def get_random_field_value(exclude_field_value_ids):
+    value_random = FieldValue.objects.exclude(id__in=exclude_field_value_ids)
+    if value_random:
+        return value_random.order_by('?').first()
+    assert False
     return value_random
 
 
@@ -47,11 +49,18 @@ def create_card(game, user):
     card.game = game
     card.user = user
     card.save()
+    n_fields = FieldValue.objects.count()
+    exclude_field_value_ids = []
     for i in range(1, 26):  # 5x5 field
         field = Field()
         field.card = card
         field.position = i
-        field.field_value = get_random_field_value()
+        if len(exclude_field_value_ids) < n_fields:
+            field_value = get_random_field_value(exclude_field_value_ids)
+        else:
+            field_value = get_random_field_value([])
+        exclude_field_value_ids.append(field_value.id)
+        field.field_value = field_value
         field.save()
 
 
