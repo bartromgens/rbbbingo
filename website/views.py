@@ -80,8 +80,8 @@ class EventsView(TemplateView):
 class CheckFieldView(CardView):
 
     def get_context_data(self, field_id, **kwargs):
-        context = super(CheckFieldView, self).get_context_data(**kwargs)
         field = Field.objects.get(id=field_id)
+        context = super(CheckFieldView, self).get_context_data(field.card.id, **kwargs)
         if field.card.user != self.request.user:  # users can only change fields on their own cards
             return context
         field.is_checked = not field.is_checked
