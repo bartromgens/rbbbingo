@@ -18,7 +18,11 @@
 <div class="row" align="center">
     {% for event in events %}
         <div class="col-md-12">
-        <h4>{{ event.name }}</h4>
+        <h4>
+            <a href="/event/edit/{{ event.id }}">
+                {{ event.name }}
+            </a>
+        </h4>
         <h5>{{ event.description }}</h5>
         {% if event.image %}
           <img src="{{ event.image.url }}" class="img-responsive" alt="{{ event.name }} image">
