@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from django_resized import ResizedImageField
+
 
 class Game(models.Model):
     name = models.CharField(max_length=300)
@@ -27,7 +29,7 @@ class Field(models.Model):
 class FieldValue(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=1000, blank=True)
-    image = models.ImageField(blank=True)
+    image = ResizedImageField(size=[1200, 1200], quality=80, blank=True)
 
     def __str__(self):
         return self.name
