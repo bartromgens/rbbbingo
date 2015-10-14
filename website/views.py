@@ -7,6 +7,7 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView
 from django.views.generic import FormView
+from django.views.generic import UpdateView
 
 from registration.views import RegistrationView
 from registration import signals
@@ -122,26 +123,14 @@ class NewEventView(FormView):
         return context
 
 
-class EditEventView(FormView):
+class EditEventView(UpdateView):
     template_name = 'website/event_edit.html'
     form_class = NewFieldValuedForm
     success_url = '/'
 
-    def get_form(self, form_class):
-        value = FieldValue.objects.get(id=self.kwargs['id'])
-        return NewFieldValuedForm(instance=value, **self.get_form_kwargs())
-
-    def form_valid(self, form):
-        super(EditEventView, self).form_valid(form)
-        form.save()
-        return HttpResponseRedirect('/')
-
-    def get_context_data(self, **kwargs):
-        context = super(EditEventView, self).get_context_data(**kwargs)
-        value = FieldValue.objects.get(id=self.kwargs['id'])
-        form = NewFieldValuedForm(instance=value, **self.get_form_kwargs())
-        context['form'] = form
-        return context
+    def get_object(self, queryset=None):
+        obj = FieldValue.objects.get(id=self.kwargs['id'])
+        return obj
 
 
 class NewGameView(FormView):
