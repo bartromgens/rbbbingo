@@ -36,6 +36,8 @@ class FieldValue(models.Model):
 
     class Meta:
         verbose_name = "Event"
+        ordering = ['-id']
+
 
 
 def get_random_field_value(exclude_field_value_ids):
