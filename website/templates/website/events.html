@@ -28,7 +28,7 @@
     {% for event in events %}
         <div class="col-md-12">
         <h4>
-            <a name="{{ event.id }}" ref="/event/edit/{{ event.id }}">
+            <a href="/event/edit/{{ event.id }}">
                 {{ event.name }}
             </a>
         </h4>
