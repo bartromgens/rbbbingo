@@ -15,11 +15,20 @@
     </div>
 </div>
 
+
+<div class="row" align="center">
+{% for event in events %}
+  <a href="#{{ event.id }}">
+      {{ event.name }} |
+  </a>
+{% endfor %}
+</div>
+
 <div class="row" align="center">
     {% for event in events %}
         <div class="col-md-12">
         <h4>
-            <a href="/event/edit/{{ event.id }}">
+            <a name="{{ event.id }}" ref="/event/edit/{{ event.id }}">
                 {{ event.name }}
             </a>
         </h4>
