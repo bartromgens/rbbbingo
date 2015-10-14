@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
-import django_resized.forms
+import easy_thumbnails.fields
 
 
 class Migration(migrations.Migration):
@@ -19,6 +19,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='fieldvalue',
             name='image',
-            field=django_resized.forms.ResizedImageField(upload_to='', blank=True),
+            field=easy_thumbnails.fields.ThumbnailerImageField(blank=True, upload_to=''),
         ),
     ]

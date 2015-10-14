@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'bootstrap3', #bootstrap3 see: https://github.com/dyve/django-bootstrap3
     'registration',
+    'easy_thumbnails',
     'bingo',
     'website',
 )
@@ -109,3 +110,17 @@ BOOTSTRAP3 = {
 ##############################
 
 AUTHENTICATION_METHOD = 'both'
+
+#########################
+# django-easythumbnails #
+#########################
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'tile_50px': {'size': (50, 50), 'crop': "smart"},
+        'tile_100px': {'size': (100, 100), 'crop': "smart"},
+        'tile_400px': {'size': (400, 400), 'crop': "smart"},
+        'tile_1000px': {'size': (100, 100), 'crop': "smart"},
+    },
+}
+

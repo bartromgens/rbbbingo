@@ -12,7 +12,7 @@
       <div class="col-xs-15" data-toggle="modal" data-target="#myModal">
         <div class="bingo-field">
           {% if field.field_value.image %}
-          <div class="bingo-field-bg" style="background-image:url({{ field.field_value.image.url }}); background-size:cover;"></div>
+          <div class="bingo-field-bg" style="background-image:url({{ field.field_value.image.tile_400px.url }}); background-size:cover;"></div>
           {% else %}
           <div class="bingo-field-bg"></div>
           {% endif %}

@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from django_resized import ResizedImageField
+from easy_thumbnails.fields import ThumbnailerImageField
 
 
 class Game(models.Model):
@@ -29,7 +29,7 @@ class Field(models.Model):
 class FieldValue(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=1000, blank=True)
-    image = ResizedImageField(size=[1920, 1920], quality=80, blank=True)
+    image = ThumbnailerImageField(blank=True)
 
     def __str__(self):
         return self.name
