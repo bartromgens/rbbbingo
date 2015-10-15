@@ -46,14 +46,16 @@ body {
   margin-top: 75px;
 }
 
-
+.modal-footer button {
+  width: 100%;
+}
 
 /* bingo-fields
 ========================================*/
 .bingo-field {
   border-radius: 2px;
-  border: 1px solid #2C3E50;
-  color: #2C3E50;
+  border: 1px solid #BF3E11;
+  color: #BF3E11;
   margin-bottom: 15px;
   padding: 5px;
   overflow: hidden;
@@ -66,7 +68,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.33;
+  opacity: 0.15;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -77,26 +79,14 @@ body {
   top: 50%;
   transform: translateY(-50%);
   z-index: 1;
-  font-weight: bold;
   word-wrap: break-word;
 }
 
 .bingo-field-done {
-  background-color: #2C3E50;
+  background-color: #BF3E11;
   color: #FFFFFF;
 }
 
 .bingo-field-done .done-cross {
   display: block;
-}
-
-.done-cross {
-  color: #415161;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  font-size: 100%;
-  display: none;
 }
