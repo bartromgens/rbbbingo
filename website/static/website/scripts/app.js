@@ -16,7 +16,7 @@ $(document).ready(function () {
   };
   
   var array = ['#field1', '#field2', '#field3', '#field4', '#field5', '#field6', '#field7',
-               '#field8', '#field9', '#field10', '#field11', '#field12', '#field13', '#fiel14',
+               '#field8', '#field9', '#field10', '#field11', '#field12', '#field13', '#field14',
                '#field15', '#field16', '#field17', '#field18', '#field19', '#field20', '#field21',
                '#field22', '#field23', '#field24', '#field25'];
   
