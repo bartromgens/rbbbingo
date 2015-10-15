@@ -50,6 +50,10 @@ body {
   width: 100%;
 }
 
+.modal-content img {
+  width: 100%;
+}
+
 /* bingo-fields
 ========================================*/
 .bingo-field {
